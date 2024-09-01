@@ -9,6 +9,7 @@ import (
 
 func main() {
 	fmt.Println("WELCOME!")
+	bookManager := controller.BookManager{}
 	optionsMap := map[int]string{1: "Register a book", 2: "Allocate a book", 3: "Search a book", 4: "Print all books"}
 	for {
 		for key, value := range optionsMap {
@@ -23,17 +24,15 @@ func main() {
 		}
 		switch selectedIndex {
 		case 1:
-			RegisterABook()
+			RegisterABook(&bookManager)
 		case 4:
-			PrintAllBooks()
+			PrintAllBooks(&bookManager)
 		}
 	}
 
 }
 
-func RegisterABook() {
-	bookManager := controller.BookManager{}
-
+func RegisterABook(bookManager *controller.BookManager) {
 	var title string
 	var author string
 	var pages int
@@ -67,7 +66,6 @@ func RegisterABook() {
 
 }
 
-func PrintAllBooks() {
-	bookManager := controller.BookManager{}
+func PrintAllBooks(bookManager *controller.BookManager) {
 	fmt.Printf("All Books: %+v\n", bookManager.AllBooks)
 }
