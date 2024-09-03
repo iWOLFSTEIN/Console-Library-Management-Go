@@ -21,7 +21,7 @@ type BookManager struct {
 	Allocations []models.Allocation
 }
 
-func (bm *BookManager) GetAllSearchedBooksResults(searchInput string) []models.Book {
+func (bm *BookManager) GetAllSearchedBooksResults(searchInput string) *[]models.Book {
 	var searchedBooks []models.Book
 
 	for _, book := range bm.AllBooks {
@@ -30,7 +30,7 @@ func (bm *BookManager) GetAllSearchedBooksResults(searchInput string) []models.B
 		}
 	}
 
-	return searchedBooks
+	return &searchedBooks
 }
 
 func (bm *BookManager) GetBookOrNil(id int) *models.Book {

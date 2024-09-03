@@ -45,9 +45,9 @@ func SearchBooks(bookManager *controller.BookManager) {
 	var bookTitle string
 	fmt.Scanln(&bookTitle)
 
-	var allSearchedBooks []models.Book = bookManager.GetAllSearchedBooksResults(bookTitle)
+	var allSearchedBooks *[]models.Book = bookManager.GetAllSearchedBooksResults(bookTitle)
 
-	for _, book := range allSearchedBooks {
+	for _, book := range *allSearchedBooks {
 		println(book.Id, book.Title)
 	}
 
