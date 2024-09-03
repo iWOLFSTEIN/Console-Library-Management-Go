@@ -2,6 +2,7 @@ package controller
 
 import (
 	"go_practice/lib/models"
+	"strings"
 )
 
 func contains[T comparable](items *[]T, item T) bool {
@@ -18,6 +19,18 @@ type BookManager struct {
 	AllBooks []models.Book
 
 	Allocations []models.Allocation
+}
+
+func (bm *BookManager) GetAllSearchedBooksResults(searchInput string) []models.Book {
+	var searchedBooks []models.Book
+
+	for _, book := range bm.AllBooks {
+		if strings.Contains(book.Title, searchInput) {
+			searchedBooks = append(searchedBooks, book)
+		}
+	}
+
+	return searchedBooks
 }
 
 func (bm *BookManager) GetBookOrNil(id int) *models.Book {

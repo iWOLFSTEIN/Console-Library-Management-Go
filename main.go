@@ -29,11 +29,26 @@ func main() {
 			RegisterABook(&bookManager, &bookIdCounter)
 		case 2:
 			AllocatedABook(&bookManager)
+		case 3:
+			SearchBooks(&bookManager)
 		case 4:
 			PrintAllBooks(&bookManager)
 		case 5:
 			RegisterAUser(&bookManager, &userIdCounter)
 		}
+	}
+
+}
+
+func SearchBooks(bookManager *controller.BookManager) {
+	println("Write title of the book")
+	var bookTitle string
+	fmt.Scanln(&bookTitle)
+
+	var allSearchedBooks []models.Book = bookManager.GetAllSearchedBooksResults(bookTitle)
+
+	for _, book := range allSearchedBooks {
+		println(book.Id, book.Title)
 	}
 
 }
